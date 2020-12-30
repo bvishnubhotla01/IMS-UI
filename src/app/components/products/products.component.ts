@@ -39,10 +39,14 @@ export class ProductsComponent implements OnInit {
       this.dataSource.data = this.productData;
     });
   }
-  isAllSelected() {
+  isAllSelected(): boolean {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
+  }
+
+  isMultipleSelected(): boolean {
+    return this.selection.selected.length > 1;
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
@@ -64,6 +68,11 @@ export class ProductsComponent implements OnInit {
 
   addProduct(): void {
     this.mode = "create";
-    // this.router.navigate(["create"], { relativeTo: this.route });
+    this.router.navigate(["create"], { relativeTo: this.route });
+  }
+
+  onCreateProduct(): void {
+    this.mode = "view";
+    this.router.navigateByUrl("/products");
   }
 }

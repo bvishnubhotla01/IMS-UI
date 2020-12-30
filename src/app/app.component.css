@@ -24,4 +24,7 @@
 .main-container {
   margin-left: 10px;
   width: 98%;
+  margin-bottom: 10px;
+  height: 80%;
+  overflow-y: auto;
 }

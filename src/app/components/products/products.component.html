@@ -2,7 +2,11 @@
 <div *ngIf="mode === 'view'">
   <div class="mat-h2">List of Products in the system</div>
   <button mat-mini-fab color="primary" (click)="addProduct()">Add</button>
-  &nbsp; <button mat-mini-fab color="accent">Edit</button> &nbsp;
+  &nbsp;
+  <button mat-mini-fab color="accent" [disabled]="isMultipleSelected()">
+    Edit
+  </button>
+  &nbsp;
   <button mat-mini-fab color="warn">Delete</button>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -30,13 +34,13 @@
 
     <!-- ProductID Column -->
     <ng-container matColumnDef="ProductID">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <th mat-header-cell *matHeaderCellDef>Product ID</th>
       <td mat-cell *matCellDef="let element">{{ element.ProductID }}</td>
     </ng-container>
 
     <!-- ProductName Column -->
     <ng-container matColumnDef="ProductName">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <th mat-header-cell *matHeaderCellDef>Product Name</th>
       <td mat-cell *matCellDef="let element">{{ element.ProductName }}</td>
     </ng-container>
 
@@ -68,10 +72,11 @@
     ></tr>
   </table>
 </div>
+
 <!-- CREATE MODE -->
 <div *ngIf="mode === 'create'">
   <div class="mat-h2">Add a product</div>
-  <app-create-product></app-create-product>
+  <app-create-product (productCreated)="onCreateProduct()"></app-create-product>
 </div>
 <!-- EDIT MODE -->
 <div *ngIf="mode === 'edit'">
