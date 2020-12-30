@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { map, shareReplay, takeWhile } from "rxjs/operators";
 import { UserService } from "src/app/services/user.service";
-import { clearUser, isUserLoggedIn } from "src/app/Shared/app-utility";
+import { clearUser, isUserLoggedIn } from "src/app/shared/app-utility";
 
 @Component({
   selector: "app-user-greeting",

@@ -3,7 +3,7 @@ import { Component, OnChanges, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { map, shareReplay, takeWhile } from "rxjs/operators";
-import { clearUser, isUserLoggedIn, userLoggedIn } from "./Shared/app-utility";
+import { clearUser, isUserLoggedIn, userLoggedIn } from "./shared/app-utility";
 
 @Component({
   selector: "app-root",

@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { IUser } from "src/app/models/user";
 import { UserService } from "src/app/services/user.service";
-import { setUser, userLoggedIn } from "src/app/Shared/app-utility";
+import { setUser, userLoggedIn } from "src/app/shared/app-utility";
 
 @Component({
   selector: "ims-login",
