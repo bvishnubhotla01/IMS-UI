@@ -1,5 +1,5 @@
 <div class="mat-h1">
-  <form class="example-form">
+  <div class="example-form">
     Login to IMS
     <mat-form-field
       appearance="fill"
@@ -7,7 +7,13 @@
       class="example-full-width"
     >
       <mat-label>Username:</mat-label>
-      <input matInput placeholder="Your username" />
+      <input
+        #input
+        matInput
+        placeholder="Your username"
+        id="input"
+        name="input"
+      />
       <mat-icon matSuffix>person_outline</mat-icon>
     </mat-form-field>
     <br />
@@ -21,7 +27,14 @@
     </mat-form-field>
     <div class="mat-h4">
       <a href="#" class="mat-h4">Forgot Password?</a> &nbsp;&nbsp;&nbsp;
-      <button mat-raised-button color="primary">Login</button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="login(input.value)"
+      >
+        Login
+      </button>
     </div>
-  </form>
+  </div>
 </div>
