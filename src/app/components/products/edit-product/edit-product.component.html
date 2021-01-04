@@ -1,1 +1,61 @@
-<p>edit-product works!</p>
+<div class="mat-h1">
+  <div class="example-form">
+    <mat-form-field
+      appearance="fill"
+      [floatLabel]="'auto'"
+      class="example-full-width"
+    >
+      <mat-label>Product Name:</mat-label>
+      <input
+        #ProductName
+        matInput
+        placeholder="Product Name"
+        id="ProductName"
+        name="ProductName"
+        [(value)]="currentProduct.ProductName"
+      /> </mat-form-field
+    ><br />
+    <mat-form-field
+      appearance="fill"
+      [floatLabel]="'auto'"
+      class="example-full-width"
+    >
+      <mat-label>Price (in USD):</mat-label>
+      <input
+        #Price
+        matInput
+        placeholder="1.00"
+        id="Price"
+        name="Price"
+        type="number"
+        [(value)]="currentProduct.Price"
+      /> </mat-form-field
+    ><br />
+    <mat-form-field
+      appearance="fill"
+      [floatLabel]="'auto'"
+      class="example-full-width"
+    >
+      <mat-label>Quantity:</mat-label>
+      <input
+        #Quantity
+        matInput
+        placeholder="1"
+        id="Quantity"
+        name="Quantity"
+        type="number"
+        [(value)]="currentProduct.Quantity"
+      /> </mat-form-field
+    ><br />
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      (click)="updateProduct(ProductName.value, Price.value, Quantity.value)"
+    >
+      Save
+    </button>
+    &nbsp;
+    <button mat-raised-button color="secondary" type="reset">Clear</button>
+  </div>
+</div>

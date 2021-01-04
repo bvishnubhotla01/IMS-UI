@@ -1,6 +1,6 @@
-import { HttpClient, HttpResponse } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { IProduct } from "../models/product";
 
@@ -16,18 +16,25 @@ export class ProductService {
     return this.http.get<IProduct[]>(url);
   }
 
+  public getProduct(id: string): Observable<IProduct> {
+    const url = `${this.serviceUrl}/Products/get/${id}`;
+    return this.http.get<IProduct>(url);
+  }
+
   public addProduct(product: IProduct): Observable<IProduct> {
-    const url = `${this.serviceUrl}/Products`;
-    return this.http.post<IProduct>(url, product);
+    const url = `${this.serviceUrl}/Products/create`;
+    return this.http.post<IProduct>(url, product, { withCredentials: true });
   }
 
-  public editProduct(product: IProduct): Observable<number> {
-    const url = `${this.serviceUrl}/Products/${product.ProductID}`;
-    return this.http.put<number>(url, product);
+  public editProduct(product: IProduct): Observable<boolean> {
+    const url = `${this.serviceUrl}/Products/edit`;
+    return this.http.post<boolean>(url, product, {
+      withCredentials: true,
+    });
   }
 
-  public deleteProduct(product: IProduct): Observable<IProduct> {
-    const url = `${this.serviceUrl}/Products/${product.ProductID}`;
-    return this.http.delete<IProduct>(url);
+  public deleteProduct(products: IProduct[]): Observable<boolean> {
+    const url = `${this.serviceUrl}/Products/delete`;
+    return this.http.post<boolean>(url, products, { withCredentials: true });
   }
 }

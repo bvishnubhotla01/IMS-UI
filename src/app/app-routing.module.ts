@@ -1,8 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { LoginComponent } from "./components/login/login.component";
-import { CreateProductComponent } from "./components/products/create-product/create-product.component";
-import { EditProductComponent } from "./components/products/edit-product/edit-product.component";
 import { ProductsComponent } from "./components/products/products.component";
 import { CanActivateChildGuard } from "./shared/can-activate-child.guard";
 import { CanActivateGuard } from "./shared/can-activate.guard";

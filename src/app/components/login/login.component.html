@@ -23,7 +23,7 @@
       class="example-full-width"
     >
       <mat-label>Password:</mat-label>
-      <input matInput type="password" placeholder="Your Password" />
+      <input #password matInput type="password" placeholder="Your Password" />
     </mat-form-field>
     <div class="mat-h4">
       <a href="#" class="mat-h4">Forgot Password?</a> &nbsp;&nbsp;&nbsp;
@@ -31,7 +31,8 @@
         mat-raised-button
         color="primary"
         type="submit"
-        (click)="login(input.value)"
+        [disabled]="input.value === '' || password.value === ''"
+        (click)="login(input.value, password.value)"
       >
         Login
       </button>

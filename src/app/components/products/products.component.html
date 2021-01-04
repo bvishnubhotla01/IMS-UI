@@ -3,11 +3,23 @@
   <div class="mat-h2">List of Products in the system</div>
   <button mat-mini-fab color="primary" (click)="addProduct()">Add</button>
   &nbsp;
-  <button mat-mini-fab color="accent" [disabled]="isMultipleSelected()">
+  <button
+    mat-mini-fab
+    color="accent"
+    [disabled]="selection.selected.length !== 1"
+    (click)="editProduct()"
+  >
     Edit
   </button>
   &nbsp;
-  <button mat-mini-fab color="warn">Delete</button>
+  <button
+    mat-mini-fab
+    color="warn"
+    [disabled]="selection.selected.length === 0"
+    (click)="deleteProduct()"
+  >
+    Delete
+  </button>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Select Checkbox Column -->
@@ -58,7 +70,7 @@
 
     <!-- Created Date Column -->
     <ng-container matColumnDef="CreatedDate">
-      <th mat-header-cell *matHeaderCellDef>Created Date</th>
+      <th mat-header-cell *matHeaderCellDef>Last Modified</th>
       <td mat-cell *matCellDef="let element">
         {{ element.CreatedDate | date: "medium" }}
       </td>
@@ -81,5 +93,8 @@
 <!-- EDIT MODE -->
 <div *ngIf="mode === 'edit'">
   <div class="mat-h2">Edit product</div>
-  <app-edit-product></app-edit-product>
+  <app-edit-product
+    [productId]="productToEdit"
+    (productUpdated)="onUpdateProduct()"
+  ></app-edit-product>
 </div>

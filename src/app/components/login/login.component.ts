@@ -20,24 +20,20 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  login($event: string): void {
-    if ($event) {
-      this.userService.getUser($event).subscribe(
-        (result) => {
-          if (result?.status === 200) {
-            this.user = result.body;
-            setUser(result.body.UserName);
-            this.router.navigate(["products"]);
-          }
-        },
-        (err: HttpErrorResponse) => {
-          if (err.status === 404) {
-            alert("Invalid username and/or password. Please try again.");
-          }
+  login(userName: string, password: string): void {
+    this.userService.getUser(userName, password).subscribe(
+      (result) => {
+        if (result?.status === 200) {
+          this.user = result.body;
+          setUser(result.body.UserName);
+          this.router.navigate(["products"]);
         }
-      );
-    } else {
-      alert("Please enter username and password to login.");
-    }
+      },
+      (err: HttpErrorResponse) => {
+        if (err.status === 404) {
+          alert("Invalid username and/or password. Please try again.");
+        }
+      }
+    );
   }
 }

@@ -12,8 +12,11 @@ export class UserService {
   private serviceUrl = `${environment.apiUrl}`;
   constructor(private http: HttpClient) {}
 
-  public getUser(userName: string): Observable<HttpResponse<IUser>> {
-    const url = `${this.serviceUrl}/Users/${userName}`;
+  public getUser(
+    userName: string,
+    password: string
+  ): Observable<HttpResponse<IUser>> {
+    const url = `${this.serviceUrl}/Users/get/${userName}`;
     return this.http.get<IUser>(url, { observe: "response" });
   }
 

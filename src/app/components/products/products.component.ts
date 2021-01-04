@@ -22,6 +22,7 @@ export class ProductsComponent implements OnInit {
   ];
   dataSource = new MatTableDataSource<IProduct>();
   selection = new SelectionModel<IProduct>(true, []);
+  productToEdit = "";
 
   constructor(
     private productService: ProductService,
@@ -36,7 +37,8 @@ export class ProductsComponent implements OnInit {
   loadProducts(): void {
     this.productService.getProducts().subscribe((products) => {
       this.productData = products;
-      this.dataSource.data = this.productData;
+      this.dataSource.data = products;
+      this.selection.clear();
     });
   }
   isAllSelected(): boolean {
@@ -74,5 +76,34 @@ export class ProductsComponent implements OnInit {
   onCreateProduct(): void {
     this.mode = "view";
     this.router.navigateByUrl("/products");
+    this.loadProducts();
+  }
+
+  deleteProduct(): void {
+    this.productService.deleteProduct(this.selection.selected).subscribe(
+      (result) => {
+        if (result) {
+          alert("selected product(s) deleted.");
+          this.loadProducts();
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  editProduct(): void {
+    this.productToEdit = this.selection.selected[0].ProductID.toString();
+    this.mode = "edit";
+    this.router.navigate(["edit", this.productToEdit], {
+      relativeTo: this.route,
+    });
+  }
+
+  onUpdateProduct(): void {
+    this.mode = "view";
+    this.router.navigateByUrl("/products");
+    this.loadProducts();
   }
 }

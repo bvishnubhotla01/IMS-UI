@@ -1,9 +1,7 @@
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { Component, OnChanges, OnDestroy, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Component } from "@angular/core";
 import { Observable } from "rxjs";
-import { map, shareReplay, takeWhile } from "rxjs/operators";
-import { clearUser, isUserLoggedIn, userLoggedIn } from "./shared/app-utility";
+import { map, shareReplay } from "rxjs/operators";
 
 @Component({
   selector: "app-root",

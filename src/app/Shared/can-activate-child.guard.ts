@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { CanActivate, CanActivateChild, UrlTree } from "@angular/router";
+import { CanActivateChild, UrlTree } from "@angular/router";
 import { Observable, of } from "rxjs";
 import { mergeMap } from "rxjs/operators";
 import { isUserLoggedIn } from "./app-utility";

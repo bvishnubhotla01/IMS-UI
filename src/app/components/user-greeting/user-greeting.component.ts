@@ -1,9 +1,8 @@
-import { Component, OnChanges, OnDestroy, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
-import { map, shareReplay, takeWhile } from "rxjs/operators";
 import { UserService } from "src/app/services/user.service";
-import { clearUser, isUserLoggedIn } from "src/app/shared/app-utility";
+import { clearUser, getUser } from "src/app/shared/app-utility";
 
 @Component({
   selector: "app-user-greeting",
@@ -11,6 +10,7 @@ import { clearUser, isUserLoggedIn } from "src/app/shared/app-utility";
 })
 export class UserGreetingComponent {
   loggedIn: Observable<boolean> = this.userService.isUserLoggedIn();
+  userName = getUser();
   constructor(private router: Router, private userService: UserService) {}
 
   logout() {
