@@ -1,5 +1,13 @@
 import { HttpErrorResponse } from "@angular/common/http";
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from "@angular/core";
 import { getDefaultProduct, IProduct } from "src/app/models/product";
 import { ProductService } from "src/app/services/product.service";
 import { getUser } from "src/app/shared/app-utility";
@@ -11,6 +19,9 @@ import { getUser } from "src/app/shared/app-utility";
 export class EditProductComponent implements OnInit {
   @Input() productId: string;
   @Output() productUpdated = new EventEmitter<boolean>();
+  @ViewChild("ProductName") productName: ElementRef<any>;
+  @ViewChild("Price") price: ElementRef<any>;
+  @ViewChild("Quantity") quantity: ElementRef<any>;
   currentProduct: IProduct = getDefaultProduct();
 
   constructor(private productService: ProductService) {}
@@ -43,5 +54,11 @@ export class EditProductComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  clearForm(): void {
+    this.productName.nativeElement.value = "";
+    this.price.nativeElement.value = "";
+    this.quantity.nativeElement.value = "";
   }
 }

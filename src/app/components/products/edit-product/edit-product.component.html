@@ -12,6 +12,7 @@
         placeholder="Product Name"
         id="ProductName"
         name="ProductName"
+        maxlength="50"
         [(value)]="currentProduct.ProductName"
       /> </mat-form-field
     ><br />
@@ -51,11 +52,21 @@
       mat-raised-button
       color="primary"
       type="submit"
+      [disabled]="
+        Price.value === '' || ProductName.value === '' || Quantity.value === ''
+      "
       (click)="updateProduct(ProductName.value, Price.value, Quantity.value)"
     >
       Save
     </button>
     &nbsp;
-    <button mat-raised-button color="secondary" type="reset">Clear</button>
+    <button
+      mat-raised-button
+      color="secondary"
+      type="reset"
+      (click)="clearForm()"
+    >
+      Clear
+    </button>
   </div>
 </div>
